@@ -201,7 +201,8 @@ class Store<T = unknown> {
 
     /**
      * @desc Manually save the store. (synchronously)
-     * @returns Whether the saving is successful. (`false` if conflict occurs.)
+     * @returns Whether the saving is successful. (`false` if conflict occurs
+     * or no `storage` given.)
      */
     save(): boolean;
 
@@ -220,7 +221,8 @@ class Store<T = unknown> {
     /**
      * @desc Load the store from source.
      * @param source The source string. If omitted, read the source from `storage`.
-     * @returns Whether the loading is successful. (`false` on invalidation if it can't fixed.)
+     * @returns Whether the loading is successful. (`false` both on invalidation
+     * if it can't be fixed and no storage presence.)
      */
     load(source?: string | null): boolean;
 
