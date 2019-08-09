@@ -18,7 +18,7 @@ export interface StoreOptions<T> {
     defaultValue?: T | null;
     type?: Type<T> | null;
     delay?: number;
-    storage?: StorageLike;
+    storage?: StorageLike | null;
     lazyLoad?: boolean;
     strictLoad?: boolean;
     secure?: boolean;
@@ -33,7 +33,7 @@ export class Store<T = unknown> implements Required<StoreOptions<T>> {
     static defaults: StoreOptions<any> = {
         defaultValue: null,
         delay: 100,
-        storage: localStorage,
+        storage: typeof localStorage === 'object' ? localStorage : null,
         lazyLoad: false,
         strictLoad: true,
         secure: true,
@@ -66,7 +66,7 @@ export class Store<T = unknown> implements Required<StoreOptions<T>> {
     defaultValue!: T | null;
     type!: Type<T> | null;
     delay!: number;
-    storage!: StorageLike;
+    storage!: StorageLike | null;
     readonly lazyLoad!: boolean;
     strictLoad!: boolean;
     secure!: boolean;
@@ -115,7 +115,7 @@ export class Store<T = unknown> implements Required<StoreOptions<T>> {
     }
 
     save() {
-        if (this.secure && this.checkConflict()) {
+        if (!this.storage || this.secure && this.checkConflict()) {
             return false;
         } else {
             this.storage.setItem(this.name, this._oldSource = JSON.stringify(this._value));
@@ -147,7 +147,11 @@ export class Store<T = unknown> implements Required<StoreOptions<T>> {
 
     load(source?: string | null) {
         if (source === undefined) {
-            source = this.storage.getItem(this.name);
+            if (this.storage) {
+                source = this.storage.getItem(this.name);
+            } else {
+                return false;
+            }
         }
         const { type } = this,
             defaultValue = this._getDefaultValue();
@@ -196,13 +200,14 @@ export class Store<T = unknown> implements Required<StoreOptions<T>> {
     }
 
     checkConflict() {
-        const newSource = this.storage.getItem(this.name);
-        if (newSource !== this._oldSource) {
-            this._conflict(newSource, this._oldSource);
-            return true;
-        } else {
-            return false;
+        if (this.storage) {
+            const newSource = this.storage.getItem(this.name);
+            if (newSource !== this._oldSource) {
+                this._conflict(newSource, this._oldSource);
+                return true;
+            }
         }
+        return false;
     }
 
     get(): T;
