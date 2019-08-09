@@ -1,7 +1,7 @@
 // @ts-check
 ///<reference types=".." />
 
-const STORE_NAME = 'hstore-test';
+const STORE_NAME = 'hstorage-test';
 
 /** @param {string} selector */
 const $ = selector => document.querySelector(selector);

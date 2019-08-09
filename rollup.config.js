@@ -11,14 +11,14 @@ export default [
         output: {
             format: 'umd',
             name: 'HS',
-            file: 'dist/hstore.umd.js'
+            file: 'dist/hstorage.umd.js'
         }
     },
     {
         input,
         output: {
             format: 'esm',
-            file: 'dist/hstore.js'
+            file: 'dist/hstorage.js'
         }
     }
 ];

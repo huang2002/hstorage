@@ -1,4 +1,4 @@
-# hstore
+# hstorage
 
 > A storage lib.
 
@@ -11,7 +11,7 @@
 
 ## Introduction
 
-`hstore` is a storage lib which has a custom type system and is rather lightweight(<10KB after minification WITHOUT zipping). With your store declared, type checking and conflict detecting will be available out of the box.
+`hstorage` is a storage lib which has a custom type system and is rather lightweight(<10KB after minification WITHOUT zipping). With your store declared, type checking and conflict detecting will be available out of the box.
 
 ## Usage
 
@@ -20,15 +20,15 @@
 1. Use npm to install it as a dependency:
 
     ```bash
-    npm install hstore
+    npm install hstorage
     ```
 
 2. Import the exports of this lib:
 
     ```js
-    import { /* ... */ } from "hstore";
+    import { /* ... */ } from "hstorage";
     // or
-    const { /* ... */ } = require("hstore");
+    const { /* ... */ } = require("hstorage");
     ```
 
 3. Use them in your code.
@@ -40,13 +40,13 @@
     via jsdelivr:
 
     ```html
-    <script type="text/javascript" crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/hstore@latest/dist/hstore.umd.min.js"></script>
+    <script type="text/javascript" crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/hstorage@latest/dist/hstorage.umd.min.js"></script>
     ```
 
     or via unpkg:
 
     ```html
-    <script type="text/javascript" crossorigin="anonymous" src="https://unpkg.com/hstore@latest/dist/hstore.umd.min.js"></script>
+    <script type="text/javascript" crossorigin="anonymous" src="https://unpkg.com/hstorage@latest/dist/hstorage.umd.min.js"></script>
     ```
 
 2. Access the APIs via the `HS` global.
