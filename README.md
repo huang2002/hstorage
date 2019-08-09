@@ -186,6 +186,7 @@ class Store<T = unknown> {
      *         this.load(newSource);
      *     } else {
      *         this.storage.setItem(this.name, oldSource);
+     *         this.save();
      *     }
      * }
      * ```
